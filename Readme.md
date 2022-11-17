@@ -1,4 +1,4 @@
-# ALVIN KIVEU POTFOLIO WEBSITE
+# Auto Deploy Github Project into cPanel
 
 Step 1 : Create an FTP account on your hosting provider
 
