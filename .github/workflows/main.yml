@@ -1,31 +1,20 @@
-# build, test, and ftp deploy a jekyll site
-name: ci:deploy
+name: Deploy to cPanel
 on:
   push:
     branches:
       - main
 jobs:
-  deploy:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-    env:
-      BASEURL: ""
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.1.0
         with:
-          fetch-depth: 1
-      - uses: ruby/setup-ruby@v1
+          fetch-depth: 2
+      # Deploy to cPanel
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          bundler-cache: true
-      - name: install
-        run: gem install bundler && bundle
-      - name: build
-        run: bundle exec rake build
-      - name: test
-        run: bundle exec rake test
-      - name: deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ${{secrets.FTP_SERVER}}
-          username: ${{secrets.FTP_USERNAME}}@{{secrets.FTP_SERVER}}
-          password: ${{secrets.FTP_PASSWORD}}
-          local-dir: ./_site/
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
