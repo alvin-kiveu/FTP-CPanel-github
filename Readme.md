@@ -20,23 +20,27 @@ Step 9 : Go to actions and click on set up a workflow yourself
 
 Step 10 : Copy the code below and paste it in the workflow file and save it as main.yml
 
-```md
+```yml
 name: Deploy to cPanel
 on:
-push:
-branches: - main
+  push:
+    branches:
+      - main
 jobs:
-FTP-Deploy-Action:
-name: FTP-Deploy-Action
-runs-on: ubuntu-latest
-steps: - uses: actions/checkout@v2.1.0
-with:
-fetch-depth: 2 # Deploy to cPanel - name: FTP-Deploy-Action
-uses: SamKirkland/FTP-Deploy-Action@3.1.1
-with:
-ftp-server: ${{ secrets.FTP_SERVER }}
-ftp-username: ${{ secrets.FTP_USERNAME }}
-ftp-password: ${{ secrets.FTP_PASSWORD }}
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+        with:
+          fetch-depth: 2
+      # Deploy to cPanel
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
 ```
 
 Step 11 : Commit the changes and push it to your repository
